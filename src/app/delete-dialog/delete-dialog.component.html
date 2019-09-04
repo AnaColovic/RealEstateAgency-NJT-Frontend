@@ -1,0 +1,9 @@
+<div>
+    <div class="content-container">
+        <mdb-icon fas icon="times" id="close-icon" (click)="closeDialog()">Close</mdb-icon>
+        <span class="content-span full-width">{{service.message}}</span>
+    </div>
+
+    <button mat-flat-button id="yes-button" color="primary" [mat-dialog-close]="true">YES</button>
+    <button mat-flat-button id="no-button" color="warn" [mat-dialog-close]="false">NO</button>
+</div>

@@ -1,0 +1,26 @@
+<app-sidebar></app-sidebar>
+<div class="container-fluid ">
+    <div class="card">
+        <div class="card-header text-white indigo">
+            <h4 class="card-title">Rent Ads</h4>
+            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+            <p class="card-category">View real estates available for RENT</p>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-xs-6">
+                    <app-search-bar [rentAds]="rentAds" (search)="updateSearch($event)"></app-search-bar>
+                </div>
+                <div class="col-lg-10 col-md-10 col-xs-6">
+                    <div class="row text-center text-lg-left">
+                        <div class="col-lg-3 col-md-4 col-xs-6" *ngFor="let rentAd of rentAds">
+                            <app-rent-card [rentAd]="rentAd"></app-rent-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>

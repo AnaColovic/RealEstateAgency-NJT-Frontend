@@ -1,0 +1,122 @@
+<mat-toolbar color="primary" class="toolBar">
+    <div class="mat-display-5" *ngIf="service.createRealEstate">New Real Estate</div>
+    <div class="mat-display-5" *ngIf="service.updateRealEstate">Update Real Estate</div>
+    <div class="mat-display-5" *ngIf="service.viewRealEstate">Real Estate - Info</div>
+    <span class="fill-remaining-space"></span>
+    <button class="btn-dialog-close" mat-stroked-button (click)="close()" tabIndex="-1" *ngIf="!service.ad"><mdb-icon fas icon="times"></mdb-icon></button>
+</mat-toolbar>
+<div class="frame-border" style="border-style: groove; border-width: thin">
+    <div class="container-fluid">
+        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && saveOrUpdate()" novalidate>
+            <div class="row">
+                <div class="col-md-5">
+                    <mat-form-field class="example-full-width" *ngIf="!service.createRealEstate">
+                        <input matInput class="idrealestate" placeholder="ID Real Estate" [(ngModel)]="service.realEstate.idrealestate" [ngModelOptions]="{standalone: true}" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Type Real Estate</mat-label>
+                        <mat-select [(ngModel)]="service.realEstate.type" required *ngIf="!service.viewRealEstate" [ngModelOptions]="{standalone: true}">
+                            <mat-option *ngFor="let key of keys" [value]="types[key]">
+                                {{types[key]}}
+                            </mat-option>
+                        </mat-select>
+                        <input matInput placeholder="Type" class="type" [(ngModel)]="service.realEstate.type" [ngModelOptions]="{standalone: true}" type="text" *ngIf="service.viewRealEstate" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>City</mat-label>
+                        <mat-select [(ngModel)]="selectedCity.idcity" *ngIf="!service.viewRealEstate" required [ngModelOptions]="{standalone: true}">
+                            <mat-option *ngFor="let city of cities" [value]="city.idcity">
+                                {{city.name}}
+                            </mat-option>
+                        </mat-select>
+                        <input matInput placeholder="City" class="city" [(ngModel)]="service.realEstate.city.name" [ngModelOptions]="{standalone: true}" type="text" *ngIf="service.viewRealEstate" readonly>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Adress" [(ngModel)]="service.realEstate.adress" name="adress" id="adress" #adress="ngModel" [ngClass]="{'is-invalid': f.submitted && adress.invalid}" required [readonly]="service.viewRealEstate">
+                        <mat-error *ngIf="f.submitted && adress.invalid">
+                            <mat-error *ngIf="adress.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Rooms" [(ngModel)]="service.realEstate.rooms" name="rooms" id="rooms" #rooms="ngModel" [ngClass]="{'is-invalid': f.submitted && rooms.invalid}" pattern="[0-9]*" required [readonly]="service.viewRealEstate">
+                        <mat-error *ngIf="f.submitted && rooms.invalid">
+                            <mat-error *ngIf="rooms.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="rooms.errors?.pattern">
+                                {{errorService.ONLY_NUMBERS_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Area (m2)" [(ngModel)]="service.realEstate.area" name="area" id="area" #area="ngModel" [ngClass]="{'is-invalid': f.submitted && area.invalid}" pattern="[0-9]*" required [readonly]="service.viewRealEstate">
+                        <mat-error *ngIf="f.submitted && area.invalid">
+                            <mat-error *ngIf="area.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="area.errors?.pattern">
+                                {{errorService.ONLY_NUMBERS_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4 ">
+                    <mat-form-field class="example-full-width ">
+                        <input matInput placeholder="Floor" [(ngModel)]="service.realEstate.floor" name="floor" id="floor" #floor="ngModel" [ngClass]="{'is-invalid': f.submitted && floor.invalid}" pattern="[0-9]*" required [readonly]="service.viewRealEstate">
+                        <mat-error *ngIf="f.submitted && floor.invalid">
+                            <mat-error *ngIf="floor.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="floor.errors?.pattern">
+                                {{errorService.ONLY_NUMBERS_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <textarea rows="4" cols="10" matInput placeholder="Description" class="desc" [(ngModel)]="service.realEstate.description" [ngModelOptions]="{standalone: true}" type="text" [readonly]="service.viewRealEstate"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4" *ngIf="service.realEstate.fileImg!=null">
+                    <img class="img-fluid img-thumbnail" [src]="service.realEstate.fileImg" (ngModel)="realEstateImg" style="height:171px;">
+                </div>
+                <div class="col-md-4" *ngIf="!service.viewRealEstate">
+                    <label>Select an image of real estate:</label>
+                    <input placeholder="Upload image" type="file" accept="image/*" (change)="onSelectFile($event)">
+                    <mat-error *ngIf="f.submitted && !change && service.createRealEstate">
+                        <mat-error>
+                            {{errorService.REQUIRED_MESSAGE}}
+                        </mat-error>
+                    </mat-error>
+                </div>
+
+
+            </div>
+            <button mat-raised-button type="submit" color="primary" class="btn btn-primary dugme save " *ngIf="service.createRealEstate">Save</button>
+            <button mat-raised-button type="submit" color="primary" class="btn btn-primary dugme update " *ngIf="service.updateRealEstate">Update</button>
+            <div class="clearfix "></div>
+        </form>
+
+    </div>
+</div>

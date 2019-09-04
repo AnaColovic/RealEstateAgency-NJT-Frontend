@@ -1,0 +1,25 @@
+<app-sidebar></app-sidebar>
+<div class="container-fluid ">
+    <div class="card">
+        <div class="card-header text-white indigo">
+            <h4 class="card-title">Sell Ads</h4>
+            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+            <p class="card-category">View real estates available for SELL</p>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-2 col-md-2 col-xs-6">
+                    <app-search-bar-sell [sellAds]="sellAds" (search)="updateSearch($event)"></app-search-bar-sell>
+                </div>
+                <div class="col-lg-10 col-md-10 col-xs-6">
+                    <div class="row text-center text-lg-left">
+                        <div class="col-lg-3 col-md-4 col-xs-6" *ngFor="let sellAd of sellAds">
+                            <app-sell-card [sellAd]="sellAd"></app-sell-card>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

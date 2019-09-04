@@ -1,0 +1,38 @@
+<mat-dialog-content>
+    <mat-toolbar color="primary" class="toolBar">
+        <div class="mat-display-5">Log In</div>
+        <span class="fill-remaining-space"></span>
+        <button class="btn-dialog-close" mat-stroked-button (click)="close()" tabIndex="-1"><mdb-icon fas icon="times"></mdb-icon></button>
+    </mat-toolbar>
+    <div class="container-fluid">
+        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && logIn()" novalidate>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Username" [(ngModel)]="username" name="u" id="u" #u="ngModel" [ngClass]="{'is-invalid': f.submitted && u.invalid}" required>
+                        <mat-error *ngIf="f.submitted && u.invalid">
+                            <mat-error *ngIf="u.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Password" type="password" [(ngModel)]="password" name="p" id="p" #p="ngModel" [ngClass]="{'is-invalid': f.submitted && p.invalid}" required>
+                        <mat-error *ngIf="f.submitted && p.invalid">
+                            <mat-error *ngIf="p.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button mat-raised-button type="submit" color="primary" class="btn btn-primary dugme save ">Log In</button>
+            <div class="clearfix "></div>
+        </form>
+    </div>
+</mat-dialog-content>

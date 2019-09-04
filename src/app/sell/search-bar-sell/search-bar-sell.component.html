@@ -1,0 +1,46 @@
+<form>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>City</mat-label>
+        <mat-select [(ngModel)]="city.idcity" [ngModelOptions]="{standalone: true}">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let city of cities" [value]="city.idcity">
+                {{city.name}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Type Real Estate</mat-label>
+        <mat-select [(ngModel)]="type" [ngModelOptions]="{standalone: true}">
+            <mat-option>--</mat-option>
+            <mat-option *ngFor="let key of keys" [value]="types[key]">
+                {{types[key]}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Rooms</mat-label>
+        <input matInput placeholder="Rooms" class="rooms" [(ngModel)]="rooms" [ngModelOptions]="{standalone: true}" type="number">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Min Price</mat-label>
+        <input matInput placeholder="Min Rent Price" [(ngModel)]="minPrice" [ngModelOptions]="{standalone: true}" type="number">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Max Price</mat-label>
+        <input matInput placeholder="Max Rent Price" [(ngModel)]="maxPrice" [ngModelOptions]="{standalone: true}" type="number">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Min Area (m2)</mat-label>
+        <input matInput placeholder="Min Area (m2)" [(ngModel)]="minArea" [ngModelOptions]="{standalone: true}" type="number">
+    </mat-form-field>
+    <mat-form-field class="example-full-width" appearance="outline">
+        <mat-label>Max Area (m2)</mat-label>
+        <input matInput placeholder="Max Area (m2)" [(ngModel)]="maxArea" [ngModelOptions]="{standalone: true}" type="number">
+    </mat-form-field>
+    <button mat-raised-button class="dugme" (click)="searchSellAds()" color="primary"><mdb-icon fas icon="search"></mdb-icon>  Search</button>
+
+</form>

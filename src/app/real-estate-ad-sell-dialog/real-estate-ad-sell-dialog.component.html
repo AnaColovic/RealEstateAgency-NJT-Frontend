@@ -1,0 +1,63 @@
+<mat-dialog-content>
+    <mat-toolbar color="primary" class="toolBar">
+        <div class="mat-display-5" *ngIf="service.createAdSell">New Sell Ad</div>
+        <div class="mat-display-5" *ngIf="service.updateAdSell">Update Sell Ad</div>
+        <div class="mat-display-5" *ngIf="service.viewAdSell">Sell Ad - Info</div>
+        <span class="fill-remaining-space"></span>
+        <button class="btn-dialog-close" mat-stroked-button (click)="close()" tabIndex="-1"><mdb-icon fas icon="times"></mdb-icon></button>
+    </mat-toolbar>
+    <div class="container-fluid">
+        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && saveOrUpdate()" novalidate>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width" *ngIf="!service.createAdSell">
+                        <input matInput placeholder="ID Sell Ad" [(ngModel)]="service.adSell.id" [ngModelOptions]="{standalone: true}" readonly>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row" *ngIf="!service.createAdSell">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput [matDatepicker]="myDP2" placeholder="Date" [(ngModel)]="service.adSell.creationDate" [ngModelOptions]="{standalone: true}" readonly>
+                        <mat-datepicker-toggle disabled [for]="myDP2" matSuffix></mat-datepicker-toggle>
+                        <mat-datepicker #myDP2 disabled></mat-datepicker>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Status" [(ngModel)]="service.adSell.status" [ngModelOptions]="{standalone: true}" type="text" readonly>
+                    </mat-form-field>
+                </div>
+
+            </div>
+            <app-real-estate-dialog></app-real-estate-dialog>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <textarea rows="4" cols="10" matInput placeholder="Description" [(ngModel)]="service.adSell.description" [ngModelOptions]="{standalone: true}" type="text" [readonly]="service.viewAdSell"></textarea>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Price (€)" [(ngModel)]="service.adSell.price" name="price" id="price" #price="ngModel" [ngClass]="{'is-invalid': f.submitted && price.invalid}" required [readonly]="service.viewAdSell" pattern="[0-9]*">
+                        <mat-error *ngIf="f.submitted && price.invalid">
+                            <mat-error *ngIf="price.errors?.pattern">
+                                {{errorService.ONLY_NUMBERS_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="price.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-4">
+                    <mat-checkbox color="primary" [(ngModel)]="service.adSell.registered" [ngModelOptions]="{standalone: true}" [disabled]="service.viewAdSell">Registered</mat-checkbox>
+                </div>
+            </div>
+            <button mat-raised-button type="submit" color="primary" class="btn btn-primary dugme save " *ngIf="service.createAdSell">Save</button>
+            <button mat-raised-button type="submit" color="primary" class="btn btn-primary dugme update " *ngIf="service.updateAdSell">Update</button>
+            <div class="clearfix "></div>
+        </form>
+    </div>
+</mat-dialog-content>

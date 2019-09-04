@@ -1,0 +1,18 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title style="font-size: 20px; color: #3f51b5;">Viewing Appointment</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <form>
+            <mat-form-field>
+                <input matInput [matDatepicker]="myDP2" required placeholder="Date" [(ngModel)]="view.date" [min]="minDate" [ngModelOptions]="{standalone: true}" [readonly]="hasAppointment">
+                <mat-datepicker-toggle [disabled]="hasAppointment" [for]="myDP2" matSuffix></mat-datepicker-toggle>
+                <mat-datepicker #myDP2 [disabled]="hasAppointment"></mat-datepicker>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button class="dugme" (click)="save()" color="primary" *ngIf="!hasAppointment">Schedule a visit</button>
+        <button mat-raised-button class="dugme" (click)="delete()" color="warn" *ngIf="hasAppointment">Cancel a visit</button>
+    </mat-card-actions>
+</mat-card>

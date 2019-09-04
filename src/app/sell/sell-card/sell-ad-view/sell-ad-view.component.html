@@ -1,0 +1,109 @@
+<app-sidebar></app-sidebar>
+<div class="container-fluid ">
+    <div class="card">
+        <div class="card-header text-white indigo">
+            <h4 class="card-title">Rent Ad - ID: {{sellAd.id}}</h4>
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-5">
+                    <img mat-card-image *ngIf="sellAd.realEstate.fileImg!=null" [src]="sellAd.realEstate.fileImg" alt="Real Estate Sell Ad {{sellAd.realEstate.id}}" height="400px" width="600px">
+                </div>
+                <div class="col-md-7">
+
+                    <div class="row">
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <p>Price:</p>
+                                </div>
+                                <div class=" col-md-9 ">
+                                    <p style="font-size: 30px; color:#3f51b5; "><b>{{sellAd.price}} €</b></p>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-md-3 ">
+                                    <p>Registered:</p>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <p><b>{{sellAd.registered}}</b></p>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <p>Creation date:</p>
+                                </div>
+                                <div class="col-md-3 ">
+                                    <p><b>{{sellAd.creationDate}}</b></p>
+                                </div>
+                            </div>
+
+                            <div class="row ">
+                                <div class="col-md-3 ">
+                                    <p>Description:</p>
+                                </div>
+                                <div class="col-md-9 ">
+                                    <p><b>{{sellAd.description}}</b></p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4 ">
+                            <app-viewing-appointment-sell *ngIf="!admin"></app-viewing-appointment-sell>
+                        </div>
+
+                    </div>
+                    <h4 class="card-title info text-center "><b>Real estate info</b></h4>
+                    <hr class="hr-dark wow fadeInLeft " data-wow-delay="0.3s ">
+                    <div class="row ">
+                        <div class="col-md-2 ">
+                            <p>Adress:</p>
+                        </div>
+                        <div class="col-md-6 ">
+                            <p><b>{{sellAd.realEstate.adress}}, {{sellAd.realEstate.city.name}}</b></p>
+                        </div>
+                        <div class="col-md-2 ">
+                            <p>Type:</p>
+                        </div>
+                        <div class="col-md-2 ">
+                            <p><b>{{sellAd.realEstate.type}}</b></p>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="col-md-2 ">
+                            <p>Area:</p>
+                        </div>
+                        <div class="col-md-2 ">
+                            <p><b>{{sellAd.realEstate.area}}</b></p>
+                        </div>
+                        <div class="col-md-2 ">
+                            <p>Floor:</p>
+                        </div>
+                        <div class="col-md-2 ">
+                            <p><b>{{sellAd.realEstate.floor}}</b></p>
+                        </div>
+                        <div class="col-md-2 ">
+                            <p>Rooms:</p>
+                        </div>
+                        <div class="col-md-2 ">
+                            <p>{{sellAd.realEstate.rooms}}</p>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-md-2 ">
+                            <p>Description:</p>
+                        </div>
+                        <div class="col-md-10 ">
+                            <p><b>{{sellAd.realEstate.description}}</b></p>
+                        </div>
+                    </div>
+                    <hr class="hr-dark wow fadeInLeft " data-wow-delay="0.3s ">
+
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,40 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>Sell Ad - ID: {{sellAd.id}}</mat-card-title>
+        <mat-card-subtitle>{{sellAd.realEstate.adress}}, {{sellAd.realEstate.city.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="sellAd.realEstate.fileImg" *ngIf="sellAd.realEstate.fileImg!=null" alt="Real Estate Sell Ad {{sellAd.realEstate.id}}" height="200px" width="300px">
+    <mat-card-content>
+        <form>
+            <label style="font-size: 25px; color:#3f51b5;">Price: {{sellAd.price}} €</label>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Type:</p>
+                </div>
+                <div class="col-md-6">
+                    <p><b>{{sellAd.realEstate.type}}</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Area:</p>
+                </div>
+                <div class="col-md-6">
+                    <p><b>{{sellAd.realEstate.area}}</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Registered:</p>
+                </div>
+                <div class="col-md-6">
+                    <p><b>{{sellAd.registered}}</b></p>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button class="dugme" (click)="info()" color="primary">Info</button>
+    </mat-card-actions>
+</mat-card>

@@ -1,0 +1,116 @@
+<app-sidebar></app-sidebar>
+
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header indigo">
+                        <div class="white-text">
+                            <h4 class="card-title">My Real Estates</h4>
+                            <hr class="hr-light wow fadeInLeft" data-wow-delay="0.3s">
+                            <p class="card-category">View all my real estates that don't have an ad yet</p>
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+
+                        <div class="search-div">
+                            <button mat-raised-button type="button" (click)="create()" class="btn btn-primary dugme " color="primary">
+                                <mdb-icon fas icon="plus"></mdb-icon>  New Real Estate
+    </button>
+                            <mat-form-field class="search-form-field" floatLabel="never">
+                                <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search real estates...">
+                            </mat-form-field>
+                        </div>
+                        <div class="mat-elevation-z8">
+                            <mat-table [dataSource]="dataSource" color="indigo" matSort class="mat-elevation-z8">
+
+                                <ng-container matColumnDef="idrealestate">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> ID </mat-header-cell>
+                                    <mat-cell *matCellDef="let realestate"> {{realestate.idrealestate}} </mat-cell>
+                                </ng-container>
+
+
+                                <ng-container matColumnDef="type">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+                                    <mat-cell *matCellDef="let realestate"> {{realestate.type}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="city.name">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> City </mat-header-cell>
+                                    <mat-cell *matCellDef="let realestate"> {{realestate.city.name}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="cityid">
+                                    <mat-cell *matCellDef="let realestate"> {{realestate.city.idcity}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="fileName">
+                                    <mat-cell *matCellDef="let realestate"> {{realestate.fileName}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="adress">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Adress </mat-header-cell>
+                                    <mat-cell *matCellDef="let realestate"> {{realestate.adress}} </mat-cell>
+                                </ng-container>
+
+
+                                <ng-container matColumnDef="rooms">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Rooms </mat-header-cell>
+                                    <mat-cell *matCellDef="let realestate"> {{realestate.rooms}} </mat-cell>
+                                </ng-container>
+
+
+                                <ng-container matColumnDef="area">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Area (m2) </mat-header-cell>
+                                    <mat-cell *matCellDef="let realestate"> {{realestate.area}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="floor">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Floor</mat-header-cell>
+                                    <mat-cell *matCellDef="let realestate"> {{realestate.floor}} </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="desc">
+                                    <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+                                    <mat-cell *matCellDef="let realestate"> {{realestate.description}} </mat-cell>
+                                </ng-container>
+                                <ng-container matColumnDef="actions">
+                                    <mat-header-cell *matHeaderCellDef> View / Update / Delete</mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        <button mat-icon-button color="primary" matTooltip="View" (click)="view(row)"><mdb-icon fas icon="info"></mdb-icon></button>
+                                        <button mat-icon-button color="primary" matTooltip="Update" (click)="update(row)"><mdb-icon fas icon="pencil-alt"></mdb-icon></button>
+                                        <button mat-icon-button color="warn" matTooltip="Delete" (click)="delete(row)"><mdb-icon fas icon="trash-alt"></mdb-icon></button>
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="ad-rent">
+                                    <mat-header-cell *matHeaderCellDef>Rent A Real Estate</mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        <button mat-raised-button color="primary" matTooltip="New Ad Rent" (click)="newAdRent(row)"><mdb-icon fas icon="plus"></mdb-icon> Ad Rent</button>
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="ad-sell">
+                                    <mat-header-cell *matHeaderCellDef>Sell A Real Estate</mat-header-cell>
+                                    <mat-cell *matCellDef="let row">
+                                        <button mat-raised-button color="primary" matTooltip="New Ad Sell" (click)="newAdSell(row)"><mdb-icon fas icon="plus"></mdb-icon>  Ad Sell</button>
+                                    </mat-cell>
+                                </ng-container>
+
+                                <ng-container matColumnDef="loading">
+                                    <mat-footer-cell *matFooterCellDef colspan="6">
+                                        Loading data...
+                                    </mat-footer-cell>
+                                </ng-container>
+                                <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+                                <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+                            </mat-table>
+                            <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

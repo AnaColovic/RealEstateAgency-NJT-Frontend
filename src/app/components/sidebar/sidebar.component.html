@@ -1,0 +1,37 @@
+<mdb-navbar SideClass="navbar navbar-dark navbar-expand-md indigo fixed-top">
+
+    <!-- Navbar brand -->
+    <mdb-navbar-brand><a class="navbar-brand" [routerLink]="['/home']">RealEstate</a></mdb-navbar-brand>
+
+    <!-- Collapsible content -->
+    <links>
+
+        <!-- Links -->
+        <ul class="navbar-nav mr-auto">
+            <li routerLinkActive="active" *ngFor="let menuItem of menuItems" class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect [routerLink]="[menuItem.path]" *ngIf="menuItem.class">
+                    <mdb-icon fas icon="{{menuItem.icon}}"></mdb-icon>
+                    {{menuItem.title}}
+                </a>
+            </li>
+        </ul>
+
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect (click)="openDialogSignUp()" *ngIf="!auth.isLoggedIn()">
+                                        Sign Up
+                                    </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link waves-light" mdbWavesEffect (click)="openDialogLogIn()" *ngIf="!auth.isLoggedIn()">
+                    Log In
+                </a>
+                <a class="nav-link waves-light" mdbWavesEffect (click)="logOut()" *ngIf="auth.isLoggedIn()">
+                    Log Out
+                </a>
+            </li>
+        </ul>
+        <!-- Links -->
+    </links>
+    <!-- Collapsible content -->
+</mdb-navbar>

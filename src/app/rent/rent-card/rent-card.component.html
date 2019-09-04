@@ -1,0 +1,40 @@
+<mat-card class="card">
+    <mat-card-header>
+        <mat-card-title>Rent Ad - ID: {{rentAd.id}}</mat-card-title>
+        <mat-card-subtitle>{{rentAd.realEstate.adress}}, {{rentAd.realEstate.city.name}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="rentAd.realEstate.fileImg" *ngIf="rentAd.realEstate.fileImg!=null" alt="Real Estate Rent Ad {{rentAd.realEstate.id}}" height="200px" width="300px">
+    <mat-card-content>
+        <form>
+            <label style="font-size: 25px; color:#3f51b5;">Rent price: {{rentAd.rentprice}} €</label>
+            <br>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Type:</p>
+                </div>
+                <div class="col-md-6">
+                    <p><b>{{rentAd.realEstate.type}}</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Area:</p>
+                </div>
+                <div class="col-md-6">
+                    <p><b>{{rentAd.realEstate.area}}</b></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <p>Min months:</p>
+                </div>
+                <div class="col-md-6">
+                    <p><b>{{rentAd.minimummonths}}</b></p>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button class="dugme" (click)="info()" color="primary">Info</button>
+    </mat-card-actions>
+</mat-card>

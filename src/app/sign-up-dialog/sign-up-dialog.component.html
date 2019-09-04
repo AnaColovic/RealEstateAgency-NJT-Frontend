@@ -1,0 +1,112 @@
+<mat-dialog-content>
+    <mat-toolbar color="primary" class="toolBar">
+        <div class="mat-display-5">Sign Up</div>
+        <span class="fill-remaining-space"></span>
+        <button class="btn-dialog-close" mat-stroked-button (click)="close()" tabIndex="-1"><mdb-icon fas icon="times"></mdb-icon></button>
+    </mat-toolbar>
+    <div class="container-fluid">
+        <form name="form" #f="ngForm" (ngSubmit)="f.form.valid && signUp()" novalidate>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Username" [(ngModel)]="userProfile.username" name="username" id="username" #username="ngModel" [ngClass]="{'is-invalid': f.submitted && username.invalid}" required>
+                        <mat-error *ngIf="f.submitted && username.invalid">
+                            <mat-error *ngIf="username.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Password" [(ngModel)]="userProfile.password" type="password" name="password" id="password" #password="ngModel" [ngClass]="{'is-invalid': f.submitted && password.invalid}" required minlength="6">
+                        <mat-error *ngIf="f.submitted && password.invalid">
+                            <mat-error *ngIf="password.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="password.errors?.minlength">
+                                {{errorService.PASSWORD_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="First name" [(ngModel)]="userProfile.person.firstname" name="firstname" id="firstname" #firstname="ngModel" [ngClass]="{'is-invalid': f.submitted && firstname.invalid}" required pattern="[a-zA-Z ]*">
+                        <mat-error *ngIf="f.submitted && firstname.invalid">
+                            <mat-error *ngIf="firstname.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="firstname.errors?.pattern">
+                                {{errorService.ONLY_LETTERS_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Last name" [(ngModel)]="userProfile.person.lastname" name="lastname" id="lastname" #lastname="ngModel" [ngClass]="{'is-invalid': f.submitted && lastname.invalid}" required pattern="[a-zA-Z ]*">
+                        <mat-error *ngIf="f.submitted && lastname.invalid">
+                            <mat-error *ngIf="lastname.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="lastname.errors?.pattern">
+                                {{errorService.ONLY_LETTERS_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Email" [(ngModel)]="userProfile.person.email" name="email" id="email" #email="ngModel" [ngClass]="{'is-invalid': f.submitted && email.invalid}" required email>
+                        <mat-error *ngIf="f.submitted && email.invalid">
+                            <mat-error *ngIf="email.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="email.errors?.email">
+                                {{errorService.EMAIL_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="JMBG" [(ngModel)]="userProfile.person.jmbg" name="jmbg" id="jmbg" #jmbg="ngModel" [ngClass]="{'is-invalid': f.submitted && jmbg.invalid}" required minlength="13" maxlength="13" pattern="[0-9]*">
+                        <mat-error *ngIf="f.submitted && jmbg.invalid">
+                            <mat-error *ngIf="jmbg.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="jmbg.errors?.minlength || jmbg.errors?.maxlength">
+                                {{errorService.JMBG_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="jmbg.errors?.minlength || jmbg.errors?.pattern">
+                                {{errorService.ONLY_NUMBERS_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Phone number" [(ngModel)]="userProfile.person.phoneNumber" name="phone" id="phone" #phone="ngModel" [ngClass]="{'is-invalid': f.submitted && phone.invalid}" required pattern="[0-9 ]*">
+                        <mat-error *ngIf="f.submitted && phone.invalid">
+                            <mat-error *ngIf="phone.errors?.required">
+                                {{errorService.REQUIRED_MESSAGE}}
+                            </mat-error>
+                            <mat-error *ngIf="phone.errors?.pattern">
+                                {{errorService.ONLY_NUMBERS_MESSAGE}}
+                            </mat-error>
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <button mat-raised-button type="submit" color="primary" class="dugme">Sign Up</button>
+            <div class="clearfix "></div>
+        </form>
+    </div>
+</mat-dialog-content>
