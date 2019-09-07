@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
 import { HttpClientModule } from '@angular/common/http';
 import {MaterialModule} from './material/material.module';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { MatFileUploadModule } from 'angular-material-fileupload';
 import { AppComponent } from './app.component';
@@ -26,7 +26,6 @@ import { SearchBarComponent } from './rent/search-bar/search-bar.component';
 import { SellCardComponent } from './sell/sell-card/sell-card.component';
 import { SearchBarSellComponent } from './sell/search-bar-sell/search-bar-sell.component';
 import { RentAdViewComponent } from './rent/rent-card/rent-ad-view/rent-ad-view.component';
-import { AgmCoreModule } from '@agm/core';
 import { ViewingAppointmentComponent } from './rent/rent-card/rent-ad-view/viewing-appointment/viewing-appointment.component';
 import { SellAdViewComponent } from './sell/sell-card/sell-ad-view/sell-ad-view.component';
 import { ViewingAppointmentSellComponent } from './sell/sell-card/sell-ad-view/viewing-appointment-sell/viewing-appointment-sell.component';
@@ -72,12 +71,10 @@ import { ConfirmVerificationTokenComponent } from './confirm-verification-token/
   BrowserAnimationsModule,
   MaterialModule,
   AuthModule,
-  MatFileUploadModule,
-  AgmCoreModule.forRoot({
-    apiKey: 'AIzaSyAt4Z98Bd9OnxxKqmC6MJAoTGdsRx6ylXE'
-  })
+  MatFileUploadModule
   ],
-  entryComponents: [RealEstateDialogComponent, DeleteDialogComponent, RealEstateAdRentDialogComponent, RealEstateAdSellDialogComponent, LoginDialogComponent, SignUpDialogComponent],
+  entryComponents: [RealEstateDialogComponent, DeleteDialogComponent, RealEstateAdRentDialogComponent, RealEstateAdSellDialogComponent,
+    LoginDialogComponent, SignUpDialogComponent],
   providers: [DatePipe],
   bootstrap: [AppComponent]
 })
